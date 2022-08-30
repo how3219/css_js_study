@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            img {
+                position: absolute;
+                overflow: hidden;
+            }
+            .vod {
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/1-b90e91a4.png" />
+        <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/2-f3fd6cf5.png" />
+        <div class="vod">
+            <video
+                autoplay=""
+                playsinline=""
+                loop=""
+                src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/videos/3-27c8c3ea.webm"
+            ></video>
+        </div>
+        <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/4-105dd65b.png" />
+        <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/5-ac49bfdc.png" />
+        <script>
+            (() => {
+                let imgarr = [],
+                    bird = '',
+                    x = 0,
+                    y = 0,
+                    mx = 0,
+                    my = 0;
+                speed = 0.009;
+                function mouseMove(e) {
+                    x = e.clientX - window.innerWidth / 2;
+                    y = e.clientY - window.innerHeight / 2;
+                }
+                function init() {
+                    imgarr = document.getElementsByTagName('img');
+                    bird = document.getElementsByClassName('vod')[0];
+                    window.addEventListener('mousemove', mouseMove, false);
+                    //                    window.addEventListener('click', mouseMove, false);
+                    loop();
+                }
+                function loop() {
+                    mx += (x - mx) * speed;
+                    my += (y - my) * speed;
+                    imgarr[0].style.transform = `translate(${-mx / 12}px,${-my / 12}px`;
+                    imgarr[1].style.transform = `translate(${-mx / 9}px,${-my / 9}px`;
+                    imgarr[2].style.transform = `translate(${-mx / 6}px,${-my / 6}px`;
+                    imgarr[3].style.transform = `translate(${-mx / 3}px,${-my / 3}px`;
+                    bird.style.transform = `translate(${-mx / 5}px,${-my / 5}px`;
+                    window.requestAnimationFrame(loop);
+                }
+                window.addEventListener('load', init);
+            })();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                background-color: black;
+            }
+            h1 {
+                color: white;
+            }
+            .cursor_item {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                background: red;
+                top: 0;
+                left: 0;
+                transition: all 1s ease;
+            }
+            button {
+                font-size: 40px;
+                font-weight: bold;
+                background-color: white;
+                color: red;
+                padding: 30px 80px;
+                margin: 50px;
+                cursor: pointer;
+                transition: all 1s ease;
+            }
+            button:hover {
+                background-color: red;
+                color: #fff;
+                font-size: 80px;
+                padding: 80px 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>TEST</h1>
+        <div class="cursor_item"></div>
+        <button>START</button>
+        <script>
+            (() => {
+                let h1,
+                    cursor_item,
+                    x = 0,
+                    y = 0,
+                    mx = 0,
+                    my = 0;
+                speed = 0.1;
+                function mouseMove(e) {
+                    x = e.clientX;
+                    y = e.clientY;
+                    h1.innerHTML = `x: ${x} y: ${y}`;
+                    cursor_item.style.transform = `translate(${x - 50}px,${y - 50}px`;
+                }
+                function init() {
+                    h1 = document.getElementsByTagName('h1')[0];
+                    cursor_item = document.getElementsByClassName('cursor_item')[0];
+                    //window.addEventListener('mousemove', mouseMove, false);
+                    window.addEventListener('click', mouseMove, false);
+                    //loop();
+                }
+                /*function loop() {
+                    mx += (x - mx) * speed;
+                    my += (y - my) * speed;
+                    console.log(mx, my);
+                    cursor_item.style.transform = `translate(${mx - 50}px,${my - 50}px`;
+                    window.requestAnimationFrame(loop);
+                }*/
+                window.addEventListener('load', init);
+            })();
+        </script>
+    </body>
+</html>
