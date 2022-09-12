@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                overflow: hidden;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            button {
+                font-size: 20px;
+                padding: 10px 30px;
+                cursor: pointer;
+            }
+            .arrowWrap {
+                margin: 30px;
+            }
+            .arrowWrap img {
+                transition: all 2s ease-in-out;
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <button type="button" class="resetBtn">리셋</button>
+        <button type="button" class="startBtn">회전</button>
+        <h1>0deg</h1>
+        <div class="arrowWrap">
+            <img src="./image/up-arrow.svg" alt="arrow" class="arrow" />
+        </div>
+        <script>
+            let resetBtn,
+                startBtn,
+                h1,
+                arrow,
+                rotateNum = 0;
+            function init() {
+                resetBtn = document.querySelector('.resetBtn');
+                startBtn = document.querySelector('.startBtn');
+                h1 = document.getElementsByTagName('h1')[0];
+                arrow = document.querySelector('.arrow');
+                function start() {
+                    rotateNum = Math.round(Math.random() * 360);
+                    h1.innerHTML = `${rotateNum}deg`;
+                    arrow.style.transform = `rotate(${rotateNum}deg`;
+                }
+                function reset() {
+                    rotateNum = 0;
+                    h1.innerHTML = `${rotateNum}deg`;
+                    arrow.style.transform = `rotate(${rotateNum}deg`;
+                }
+                startBtn.addEventListener('click', start);
+                resetBtn.addEventListener('click', reset);
+            }
+            window.addEventListener('load', init);
+        </script>
+    </body>
+</html>

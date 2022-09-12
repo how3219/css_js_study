@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                height: 100vh;
+            }
+            .contWrap {
+                position: relative;
+                width: 400px;
+                background: #e6e6e6;
+                padding: 20px;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+            input {
+                padding: 10px 20px;
+                font-size: 20px;
+                text-align: center;
+                max-width: 170px;
+            }
+            button {
+                font-size: 20px;
+                padding: 8px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="contWrap">
+            <h3>내가 생각한 숫자는 몇 일까요?</h3>
+            <p class="result">(1부터 10사이)</p>
+            <input type="text" value="1" max="10" min="1" />
+            <button type="button" class="startBtn">확인</button>
+        </div>
+        <script>
+            let input, result, button, value;
+            const resultArr = ['업 ▲', '다운 ▼', '정답!'];
+            const randomNum = 5;
+            function init() {
+                input = document.getElementsByTagName('input')[0];
+                result = document.querySelector('.result');
+                button = document.querySelector('.startBtn');
+                function valueresult() {
+                    value = input.value;
+                    if (value < randomNum) {
+                        result.innerHTML = resultArr[0];
+                    } else if (value > randomNum) {
+                        result.innerHTML = resultArr[1];
+                    } else {
+                        result.innerHTML = resultArr[2];
+                    }
+                }
+                button.addEventListener('click', valueresult);
+            }
+            window.addEventListener('load', init);
+        </script>
+    </body>
+</html>
